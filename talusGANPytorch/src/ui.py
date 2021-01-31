@@ -34,14 +34,14 @@ file_list_column = [
         sg.In(size=(25, 1), enable_events=True, key="-FOLDER-"),
         sg.FolderBrowse(),
         sg.Button('Run', disabled=True),
-        sg.Checkbox('Plot', default=True, key="-PLOT-"),
+        sg.Checkbox('Plot', default=False, key="-PLOT-"),
         sg.Checkbox('Save file', default=True, key="-SAVE-"),
     ],
     [
         sg.Text("Output directory"),
         sg.In(size=(25, 1), enable_events=True, key="-OUT_FOLDER-"),
         sg.FolderBrowse(),
-        sg.Text("Bone"), sg.Input(key="-BONE-", default_text="talus")
+        sg.Text("Bone"), sg.Input(key="-BONE-", default_text="talus", size=(20, 20))
     ],
     [
         sg.Listbox(
