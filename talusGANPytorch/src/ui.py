@@ -1,7 +1,6 @@
 import PySimpleGUI as sg
 import os.path
 
-from PySimpleGUI.PySimpleGUI import Button
 import voxelize
 
 import numpy as np
