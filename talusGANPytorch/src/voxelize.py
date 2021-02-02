@@ -195,8 +195,11 @@ def voxelize(file_path, resolution, progress_bar=None):
 
     while len(voxels) > 0:
         (x, y, z) = voxels.pop()
-        vox[0, x-1, y-1, z-1] = 1
-    
+        try:
+            vox[0, x-1, y-1, z-1] = 1
+        except:
+            print("An exception occurred")
+        
     return vox
 
 def Ploat_Voxels(voxels):
