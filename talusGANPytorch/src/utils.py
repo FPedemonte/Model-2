@@ -44,6 +44,13 @@ def getVoxelFromMat(path, cube_len=64):
     # print (voxels.shape)
     return voxels
 
+def getVoxelFromFile(path, cube_len=64):
+    # the numpy file is already there, we only need to load it
+    voxels = torch.tensor(np.load(path))
+    voxels = torch.squeeze(voxels)
+    voxels = np.pad(voxels, (1, 1), 'constant', constant_values=(0, 0))
+    return voxels
+
 
 def getVFByMarchingCubes(voxels, threshold=0.5):
     v, f = sk.marching_cubes_classic(voxels, level=threshold)
@@ -92,7 +99,11 @@ class ShapeNetDataset(data.Dataset):
 
     def __getitem__(self, index):
         with open(self.root + self.listdir[index], "rb") as f:
-            volume = np.asarray(getVoxelFromMat(f, params.cube_len), dtype=np.float32)
+            # if we have .mat files we call getVoxelFromMat
+            #volume = np.asarray(getVoxelFromMat(f, params.cube_len), dtype=np.float32)
+
+            # if we have .npy files we call getVoxelFromFile
+            volume = np.asarray(getVoxelFromFile(f, params.cube_len), dtype=np.float32) #when we already have the npy files, we call the function to load it
             # print (volume.shape)
         return torch.FloatTensor(volume)
 

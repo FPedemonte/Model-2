@@ -60,7 +60,12 @@ def trainer(args):
 
     # datset define
     # dsets_path = args.input_dir + args.data_dir + "train/"
-    dsets_path = params.data_dir + params.model_dir + "30/train/"
+
+    #when working with chair files
+    #dsets_path = params.data_dir + params.model_dir + "30/train/"
+
+    #when working with .npy files (calcaneus)
+    dsets_path = params.data_dir 
     # if params.cube_len == 64:
     #     dsets_path = params.data_dir + params.model_dir + "30/train64/"
 

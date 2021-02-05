@@ -8,7 +8,7 @@ Managers of all hyper-parameters
 
 import torch
 
-epochs = 500
+epochs = 100
 batch_size = 32
 soft_label = False
 adv_weight = 0
@@ -24,10 +24,18 @@ leak_value = 0.2
 bias = False
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-data_dir = 'E:/AI/medical/talusGANPytorch/volumetric_data/'
-model_dir = 'chair/'    # change it to train on other data models
-output_dir = 'E:/AI/medical/talusGANPytorch/outputs'
-images_dir = 'E:/AI/medical/talusGANPytorch/images'
+model_dir = 'chair/'    # change it to train on other data models}
+
+#pathPC = E:/AI/medical/ # Martin
+pathPC = 'C:/Users/julir/repos/implants/' # Julian
+
+#data_dir = pathPC + 'talusGANPytorch/volumetric_data/' #original chairs datasource
+data_dir = pathPC + 'talusGANPytorch/voxelized_calcaneus/' #calcaneus data source
+output_dir = pathPC + 'talusGANPytorch/outputs'
+images_dir = pathPC + 'talusGANPytorch/images'
+
+
+
 
 def print_params():
     l = 16
