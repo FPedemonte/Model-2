@@ -8,7 +8,7 @@ Managers of all hyper-parameters
 
 import torch
 
-epochs = 100
+epochs = 500
 batch_size = 32
 soft_label = False
 adv_weight = 0
