@@ -113,6 +113,7 @@ while True:
                     else:
                         outdir = values["-OUT_FOLDER-"] + "/" + filename.split(".stl")[0].split("/")[-2] + "_" + filename.split(".stl")[0].split("/")[-1]
 
+                    voxelize.Save_Plot_Voxels(vox, outdir)
                     np.save(outdir, vox)
                     print("File saved to " + outdir)
         else:
@@ -133,6 +134,7 @@ while True:
                 else:
                     outdir = values["-OUT_FOLDER-"] + "/" + filename.split(".stl")[0].split("/")[-2] + "_" + filename.split(".stl")[0].split("/")[-1]
 
+                voxelize.Save_Plot_Voxels(vox, outdir)
                 np.save(outdir, vox)
                 print("File saved to " + outdir)
     
