@@ -219,6 +219,23 @@ def Ploat_Voxels(voxels):
     plt.show()
     plt.close()
 
+def Save_Plot_Voxels(voxels, path):
+    voxels = voxels[:8].__ge__(0.5)
+    fig = plt.figure(figsize=(32, 16))
+    gs = gridspec.GridSpec(2, 4)
+    gs.update(wspace=0.05, hspace=0.05)
+
+    for i, sample in enumerate(voxels):
+        x, y, z = sample.nonzero()
+        ax = plt.subplot(gs[i], projection='3d')
+        ax.scatter(x, y, z, zdir='z', c='red')
+        ax.set_xticklabels([])
+        ax.set_yticklabels([])
+        ax.set_aspect('auto')
+    
+    plt.savefig(path+'.png', bbox_inches='tight')
+    plt.close()
+
 if __name__ == '__main__':
     # parse cli args
     parser = argparse.ArgumentParser(description='stl/obj file to voxels converter')
