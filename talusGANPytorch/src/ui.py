@@ -83,7 +83,7 @@ while True:
             f
             for f in file_list
             if os.path.isfile(os.path.join(folder, f))
-            and f.lower().endswith((values["-BONE-"] + ".stl"))
+            and f.lower().find(values["-BONE-"]) != -1
         ]
 
         fnames.append("All")
