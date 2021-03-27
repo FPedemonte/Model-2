@@ -196,7 +196,16 @@ def voxelize(file_path, resolution, progress_bar=None):
     while len(voxels) > 0:
         (x, y, z) = voxels.pop()
         try:
-            vox[0, x-1, y-1, z-1] = 1
+            if (x == resolution):
+                x = 0
+
+            if (y == resolution):
+                y = 0
+
+            if (z == resolution):
+                z = 0
+
+            vox[0, x, y, z] = 1
         except:
             print("An exception occurred")
         
