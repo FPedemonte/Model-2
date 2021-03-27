@@ -8,7 +8,7 @@ Managers of all hyper-parameters
 
 import torch
 
-epochs = 500
+epochs = 600
 batch_size = 32
 soft_label = False
 adv_weight = 0
@@ -28,7 +28,7 @@ model_dir = 'chair/'    # change it to train on other data models}
 
 #pathPC = E:/AI/medical/ # Martin
 #pathPC = 'C:/Users/julir/repos/implants/' # Julian
-pathPC = '/Users/martingra/Projects/implants/talusGANPytorch/' #Martin mac
+#pathPC = '/Users/martingra/Projects/implants/talusGANPytorch/' #Martin mac
 
 #data_dir = pathPC + 'talusGANPytorch/volumetric_data/' #original chairs datasource
 data_dir = pathPC + 'talusGANPytorch/voxelized_calcaneus/' #calcaneus data source
