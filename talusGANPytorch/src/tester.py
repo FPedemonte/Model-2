@@ -22,6 +22,8 @@ import numpy as np
 import params
 import visdom
 
+import voxelize
+
 # def test_gen(args):
 #     test_z = []
 #     test_num = 1000
@@ -97,6 +99,9 @@ def tester(args):
             SavePloat_Voxels(samples, image_saved_path, 'tester_norm_'+str(i))
         else:
             plotVoxelVisdom(samples[0,:], vis, "tester_"+str(i))
+
+        # save stl of the generated 3d model
+        voxelize.VoxelToStl(samples[0], "mesh_"+str(i))
         
 
 ## add arguments

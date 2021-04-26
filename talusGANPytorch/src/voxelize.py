@@ -10,6 +10,11 @@ from meshlib.meshreader import MeshReader # pip install git+https://github.com/p
 from triangle import Triangle, t_c_intersection, INSIDE, vertexes_to_c_triangle, triangle_lib
 from mesh import get_scale_and_shift, scale_and_shift_triangle
 
+from voxelfuse.voxel_model import VoxelModel
+from voxelfuse.mesh import Mesh
+from voxelfuse.primitives import generateMaterials
+
+
 class BoundaryBox(object):
     """
     @type minimum: list[int]
@@ -254,3 +259,9 @@ if __name__ == '__main__':
 
     vox = voxelize(args.input, args.resolution)
     Ploat_Voxels(vox)
+
+def VoxelToStl(voxel, filename):
+    voxel = np.round(voxel,0)
+    model = VoxelModel(voxel, generateMaterials(4))  #4 is aluminium.
+    mesh = Mesh.fromVoxelModel(model)
+    mesh.export(filename + '.stl')
