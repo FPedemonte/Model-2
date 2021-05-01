@@ -28,10 +28,10 @@ model_dir = 'chair/'    # change it to train on other data models}
 
 #pathPC = E:/AI/medical/ # Martin
 #pathPC = 'C:/Users/julir/repos/implants/' # Julian
-#pathPC = '/Users/martingra/Projects/implants/talusGANPytorch/' #Martin mac
+pathPC = '/Users/martingra/Projects/implants/' #Martin mac
 
 #data_dir = pathPC + 'talusGANPytorch/volumetric_data/' #original chairs datasource
-data_dir = pathPC + 'talusGANPytorch/voxelized_calcaneus/' #calcaneus data source
+data_dir = pathPC + 'talusGANPytorch/TalusLNpy/' #calcaneus data source
 output_dir = pathPC + 'talusGANPytorch/outputs'
 images_dir = pathPC + 'talusGANPytorch/images'
 

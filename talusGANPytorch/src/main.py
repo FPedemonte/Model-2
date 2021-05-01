@@ -30,8 +30,8 @@ def main():
     parser.add_argument('--logs', type=str, default="martinLog", help='logs by tensorboardX')
     parser.add_argument('--local_test', type=str2bool, default=True, help='local test verbose')
     #parser.add_argument('--model_name', type=str, default="dcganMartin", help='model name for saving') # chairs model 
-    parser.add_argument('--model_name', type=str, default="dcganCalcaneus", help='model name for saving') # calcaneus model 
-    parser.add_argument('--test', type=str2bool, default=False, help='call tester.py')
+    parser.add_argument('--model_name', type=str, default="dcgantalus", help='model name for saving') # calcaneus model 
+    parser.add_argument('--test', type=str2bool, default=True, help='call tester.py')
     parser.add_argument('--use_visdom', type=str2bool, default=False, help='visualization by visdom')
     args = parser.parse_args()
 

@@ -26,6 +26,30 @@ def getListOfFiles(dirName):
                 
     return allFiles
 
+def procFile(filename):
+    print("Processing " + filename)
+    resolution = int(values["-RESOLUTION-"])
+    vox = voxelize.voxelize(file_path=filename, resolution=resolution)
+    print("Finished processing " + filename)
+
+    outdir = ""
+    if (values["-OUT_FOLDER-"] == ""):
+        outdir = filename.split(".stl")[0]
+    else:
+        outdir = values["-OUT_FOLDER-"] + "/" + filename.split(".stl")[0].split("/")[-2] + "_" + filename.split(".stl")[0].split("/")[-1]
+
+    if (values["-PLOT-"] == True):
+        voxelize.Ploat_Voxels(vox)
+
+    if (values["-SAVE-"] == True):
+        voxelize.Save_Plot_Voxels(vox, outdir)
+        np.save(outdir, vox)
+        print("Voxel file saved to " + outdir + ".npy")
+
+    if (values["-SAVE_STL-"] == True):
+        voxelizedFile = outdir + "_voxelized.stl"
+        voxelize.VoxelToStl(vox[0], voxelizedFile)
+        print("Restores stl file from voxels saved to " + voxelizedFile)
 
 file_list_column = [
     [
@@ -35,12 +59,14 @@ file_list_column = [
         sg.Button('Run', disabled=True),
         sg.Checkbox('Plot', default=False, key="-PLOT-"),
         sg.Checkbox('Save file', default=True, key="-SAVE-"),
+        sg.Checkbox('Save stl', default=True, key="-SAVE_STL-"),
     ],
     [
         sg.Text("Output directory"),
         sg.In(size=(25, 1), enable_events=True, key="-OUT_FOLDER-"),
         sg.FolderBrowse(),
-        sg.Text("Bone"), sg.Input(key="-BONE-", default_text="talus", size=(20, 20))
+        sg.Text("Bone"), sg.Input(key="-BONE-", default_text="talus", size=(6, 20)),
+        sg.Text("Resolution"), sg.Input(key="-RESOLUTION-", default_text="30", size=(4, 20))
     ],
     [
         sg.Listbox(
@@ -99,45 +125,12 @@ while True:
             for file in fnames:
                 if (file == "All"):
                     continue
-                filename = file
-                print("Processing " + filename)
-                vox = voxelize.voxelize(file_path=filename, resolution=30)
-                print("Finished processing " + filename)
-
-                if (values["-PLOT-"] == True):
-                    voxelize.Ploat_Voxels(vox)
-
-                if (values["-SAVE-"] == True):
-                    outdir = ""
-                    if (values["-OUT_FOLDER-"] == ""):
-                        outdir = filename.split(".stl")[0]
-                    else:
-                        outdir = values["-OUT_FOLDER-"] + "/" + filename.split(".stl")[0].split("/")[-2] + "_" + filename.split(".stl")[0].split("/")[-1]
-
-                    voxelize.Save_Plot_Voxels(vox, outdir)
-                    np.save(outdir, vox)
-                    print("File saved to " + outdir)
+                procFile(file)
         else:
             filename = os.path.join(
                 values["-FOLDER-"], values["-FILE LIST-"][0]
             )
-            print("Processing " + filename)
-            vox = voxelize.voxelize(file_path=filename, resolution=30)
-            print("Finished processing " + filename)
-
-            if (values["-PLOT-"] == True):
-                voxelize.Ploat_Voxels(vox)
-
-            if (values["-SAVE-"] == True):
-                outdir = ""
-                if (values["-OUT_FOLDER-"] == ""):
-                    outdir = filename.split(".stl")[0]
-                else:
-                    outdir = values["-OUT_FOLDER-"] + "/" + filename.split(".stl")[0].split("/")[-2] + "_" + filename.split(".stl")[0].split("/")[-1]
-
-                voxelize.Save_Plot_Voxels(vox, outdir)
-                np.save(outdir, vox)
-                print("File saved to " + outdir)
+            procFile(filename)
     
     #elif event == "-FILE LIST-":  # A file was chosen from the listbox
 
